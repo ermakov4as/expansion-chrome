@@ -1,0 +1,51 @@
+.extension-hidden {
+    visibility: hidden;
+}
+
+.extension-centre {
+    text-align: center;
+}
+
+.extension-place {
+    min-width: 300px;
+}
+
+.extension-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.red {
+    color: red;
+}
+
+.extension-button {
+    font-family: Roboto, sans-serif;
+    display: inline-block;
+    font-weight: 400;
+    vertical-align: middle;
+    border-radius: .25em;
+    background-color: #28a745;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    font-size: 14px;
+    color: white;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.extension-button::after,
+ ::before {
+    box-sizing: border-box;
+}
+
+.extension-button:hover {
+    background-color: green;
+    cursor: pointer;
+}
+
+.extension-text {
+    font-weight: bold;
+    font-style: italic;
+}

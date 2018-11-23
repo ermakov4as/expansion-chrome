@@ -1,1 +1,0 @@
-document.body.innerHTML += '<div style="background-color: #FFFFFF; border-color: black; border-style: solid; color: black; font-family: \'Segoe UI\'; font-size: 12px; position: fixed; left: 0; top: 0; width: 200px; height: 30px; padding: 8px; z-index: 1000000000">Connected with Almanac 20/80</div>';
