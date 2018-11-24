@@ -17,12 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function addToTrainer() {
-    alert('aaa');
-    /*let test = { "test_a": "test_b" };
+    //alert('aaa');
+    let test = { "test_a": "test_b" };
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', "https://extension-chrome-1.firebaseio.com/", true);
-    //xhr.send([test]);
-    xhr.send();
+    xhr.open('PUT', "https://extension-chrome-1.firebaseio.com/", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send([test]);
+    //xhr.send();
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState != 4) return;
@@ -31,5 +32,5 @@ function addToTrainer() {
         } else {
             alert(xhr.responseText);
         };
-    };*/
+    };
 };
