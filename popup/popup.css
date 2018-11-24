@@ -1,6 +1,6 @@
 .extension-hidden {
     visibility: hidden;
-    height: 0;
+    height: 0!important;
 }
 
 .extension-centre {
@@ -21,17 +21,8 @@
 }
 
 .extension-button {
-    font-family: Roboto, sans-serif;
-    display: inline-block;
     font-weight: 400;
-    vertical-align: middle;
-    border-radius: .25em;
     background-color: #28a745;
-    padding: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 7px;
-    font-size: 14px;
     color: white;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
@@ -49,4 +40,30 @@
 .extension-text {
     font-weight: bold;
     font-style: italic;
+}
+
+.extension-button,
+.extension-label-success,
+.extension-label-error {
+    font-family: Roboto, sans-serif;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: .25em;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    font-size: 14px;
+}
+
+.extension-label-success {
+    font-weight: bold;
+    background-color: azure;
+    color: green;
+}
+
+.extension-label-error {
+    font-weight: bold;
+    background-color: aqua;
+    color: red;
 }

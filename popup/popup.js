@@ -1,7 +1,10 @@
+let selectedText = [];
+
 document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.executeScript(null, { "code": "window.getSelection().toString()" }, function(selection) {
-        let selectedText = selection[0];
+        selectedText = selection[0];
         selectedText = selectedText.replace(/^\s*/, ' ').replace(/\s*$/, ' ');
+        selectedText = selectedText.slice(1, -1);
         document.getElementById("output").innerHTML = selectedText;
         if (selectedText.length > 1) {
             document.getElementById("btn").classList.remove("extension-hidden");
@@ -11,26 +14,28 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById("btn").classList.add("extension-hidden");
             document.getElementById("text").classList.add("extension-hidden");
             document.getElementById("ifNoText").classList.remove("extension-hidden");
+            document.getElementById("success").classList.add("extension-hidden");
+            document.getElementById("error").classList.add("extension-hidden");
         };
         document.getElementById('add').onclick = addToTrainer;
     });
 });
 
 function addToTrainer() {
-    //alert('aaa');
-    let test = { "test_a": "test_b" };
     let xhr = new XMLHttpRequest();
-    xhr.open('PUT', "https://extension-chrome-1.firebaseio.com/", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send([test]);
-    //xhr.send();
-
+    data = { "selected_text": selectedText };
+    xhr.open('PUT', "https://extension-chrome-1.firebaseio.com/test.json", true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    xhr.send(JSON.stringify(data));
     xhr.onreadystatechange = function() {
         if (xhr.readyState != 4) return;
         if (xhr.status != 200) {
-            alert('Error! ' + xhr.status + ': ' + xhr.statusText);
+            document.getElementById("error").classList.remove("extension-hidden");
+            document.getElementById("btn").classList.add("extension-hidden");
+            console.log('Error! ' + xhr.status + ': ' + xhr.statusText);
         } else {
-            alert(xhr.responseText);
+            document.getElementById("success").classList.remove("extension-hidden");
+            document.getElementById("btn").classList.add("extension-hidden");
         };
     };
 };
