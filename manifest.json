@@ -1,11 +1,12 @@
 {
-    "name": "Almanac 20/80 Additional Tools",
+    "name": "Swift English Additional Tools",
     "version": "1.0.0",
 
     "manifest_version": 2,
 
     "icons": {
-        "48": "./images/icon48.png"
+        "48": "./images/icon48.png",
+        "128": "./images/icon128.png"
     },
 
     "content_scripts": [{
@@ -29,12 +30,13 @@
         "<all_urls>",
         "webRequest",
         "webRequestBlocking",
-        "contextMenus"
+        "contextMenus",
+        "notifications"
     ],
 
     "options_page": "options.html",
     "background": {
-        "scripts": ["./content-menu/getset.js", "./content-menu/search.js"],
+        "scripts": ["./content-menu/getset.js", "./content-menu/search.js", "background.js"],
         "persistent": true
     }
 }

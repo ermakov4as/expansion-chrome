@@ -8,22 +8,39 @@
 </head>
 
 <body class="extension-place">
-    <div class="extension-centre extension-title">Almanac <span class="red">20/80</span></div>
+    <div class="extension-centre extension-title">SWIFT <span class="red">ENGLISH</span></div>
     <hr>
-    <div class="extension-text" id="ifNoText">Для начала работы выделите желаемый текст на странице</div>
-    <div class="extension-hidden" id="text">
-        <span class="extension-text">Выделенный текст: "</span>
-        <span id="output"></span>
-        <span class="extension-text">"</span>
-    </div>
-    <div class="extension-hidden extension-centre" id="btn">
-        <button class="extension-button" type="button" id="add">Добавить в тренажёр</button>
-    </div>
-    <div class="extension-hidden extension-centre" id="success">
-        <div class="extension-label-success">Добавлено!</div>
-    </div>
-    <div class="extension-hidden extension-centre" id="error">
-        <div class="extension-label-error">Ошибка загрузки</div>
+    <div id="authorized">
+        <div id="ifNoText">
+            <p class="extension-text">Для добавления фрагмента текста в Тренажёр:</p>
+            <ul class="extension-text-simple">
+                <li>Выделите текст</li>
+                <li>Воспользуйтесь одним из способов:</li>
+                <ul>
+                    <li>Откройте панель расширения и нажмите кнопку "Добавить"</li>
+                    <li>Нажмите ПКМ и выберите "Добавить выделенный текст в Тренажёр"</li>
+                    <li>Воспользуйтесь сочетанием "Alt+Q"</li>
+                </ul>
+            </ul>
+        </div>
+        <div class="extension-hidden" id="text">
+            <span class="extension-text">Выделенный текст: "</span>
+            <span id="output"></span>
+            <span class="extension-text">"</span>
+        </div>
+        <div class="extension-hidden extension-centre" id="btn">
+            <button class="extension-button" type="button" id="add">Добавить в тренажёр</button>
+        </div>
+        <div class="extension-hidden extension-centre" id="success">
+            <div class="extension-label-success">Добавлено!</div>
+        </div>
+        <div class="extension-hidden extension-centre" id="error">
+            <div class="extension-label-error">Ошибка загрузки</div>
+        </div>
+        <hr>
+        <div class="extension-centre">
+            <div class="extension-logout" id="logout">Выйти из аккаунта</div>
+        </div>
     </div>
 </body>
 

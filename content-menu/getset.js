@@ -57,3 +57,7 @@ function addFromMenu(text) {
         };
     };
 };
+
+function test() {
+    alert('test');
+}

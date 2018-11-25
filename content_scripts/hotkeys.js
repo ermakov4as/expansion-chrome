@@ -1,14 +1,13 @@
-var ctrlIndex = false;
+var altIndex = false;
 
 const API_URL = "https://extension-chrome-1.firebaseio.com/test.json";
 
 document.body.addEventListener('keydown', function(e) {
-    if (e.ctrlKey) {
-        ctrlIndex = true;
+    if (e.altKey) {
+        altIndex = true;
     };
     if (e.keyCode == 81) {
-        if (ctrlIndex) {
-            //alert('!!!');
+        if (altIndex) {
             var selection = window.getSelection().toString();
             if (selection != "") {
                 if (confirm('Выделенный текст: "' + selection + '"\nДобавить в тренажёр?')) {
@@ -20,8 +19,8 @@ document.body.addEventListener('keydown', function(e) {
 });
 
 document.body.addEventListener('keyup', function(e) {
-    if (!e.ctrlKey) {
-        ctrlIndex = false;
+    if (!e.altKey) {
+        altIndex = false;
     };
 });
 
@@ -37,7 +36,8 @@ function addFromHotKey(text) {
             alert('Ошибка загрузки');
             console.log('Error! ' + xhr.status + ': ' + xhr.statusText);
         } else {
-            //alert('Success');
+            alert('Success');
+            //createNotification(text);
         };
     };
 };

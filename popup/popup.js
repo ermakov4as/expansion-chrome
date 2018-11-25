@@ -4,7 +4,7 @@ const API_URL = "https://extension-chrome-1.firebaseio.com/test.json";
 
 document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.executeScript(null, { "code": "window.getSelection().toString()" }, function(selection) {
-        if (selection[0]) {
+        if (selection) {
             selectedText = selection[0];
             selectedText = selectedText.replace(/^\s*/, ' ').replace(/\s*$/, ' ');
             selectedText = selectedText.slice(1, -1);

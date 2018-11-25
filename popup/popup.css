@@ -42,6 +42,11 @@
     font-style: italic;
 }
 
+.extension-text-simple {
+    font-weight: 450;
+    font-style: italic;
+}
+
 .extension-button,
 .extension-label-success,
 .extension-label-error {
@@ -66,4 +71,15 @@
     font-weight: bold;
     background-color: aqua;
     color: red;
+}
+
+.extension-logout {
+    color: blue;
+    text-decoration-line: underline;
+    font-size: 14px;
+}
+
+.extension-logout:hover {
+    font-weight: bold;
+    cursor: pointer;
 }
