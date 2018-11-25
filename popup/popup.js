@@ -1,11 +1,15 @@
 let selectedText = [];
 
+const API_URL = "https://extension-chrome-1.firebaseio.com/test.json";
+
 document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.executeScript(null, { "code": "window.getSelection().toString()" }, function(selection) {
-        selectedText = selection[0];
-        selectedText = selectedText.replace(/^\s*/, ' ').replace(/\s*$/, ' ');
-        selectedText = selectedText.slice(1, -1);
-        document.getElementById("output").innerHTML = selectedText;
+        if (selection[0]) {
+            selectedText = selection[0];
+            selectedText = selectedText.replace(/^\s*/, ' ').replace(/\s*$/, ' ');
+            selectedText = selectedText.slice(1, -1);
+            document.getElementById("output").innerHTML = selectedText;
+        };
         if (selectedText.length > 1) {
             document.getElementById("btn").classList.remove("extension-hidden");
             document.getElementById("text").classList.remove("extension-hidden");
@@ -24,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function addToTrainer() {
     let xhr = new XMLHttpRequest();
     data = { "selected_text": selectedText };
-    xhr.open('PUT', "https://extension-chrome-1.firebaseio.com/test.json", true);
+    xhr.open('PUT', API_URL, true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     xhr.send(JSON.stringify(data));
     xhr.onreadystatechange = function() {

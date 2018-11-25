@@ -5,22 +5,36 @@
     "manifest_version": 2,
 
     "icons": {
-        "48": "/images/icon48.png"
+        "48": "./images/icon48.png"
     },
+
+    "content_scripts": [{
+        "all_frames": true,
+        "js": ["./content_scripts/hotkeys.js"],
+        "matches": ["http://*/*", "https://*/*"],
+        "run_at": "document_end"
+    }],
 
     "browser_action": {
         "default_icon": {
-            "19": "/images/icon19.png",
-            "38": "/images/icon38.png"
+            "19": "./images/icon19.png",
+            "38": "./images/icon38.png"
         },
         "default_title": "Almanac 20/80",
-        "default_popup": "popup/popup.html"
+        "default_popup": "./popup/popup.html"
     },
 
     "permissions": [
         "tabs",
         "<all_urls>",
         "webRequest",
-        "webRequestBlocking"
-    ]
+        "webRequestBlocking",
+        "contextMenus"
+    ],
+
+    "options_page": "options.html",
+    "background": {
+        "scripts": ["./content-menu/getset.js", "./content-menu/search.js"],
+        "persistent": true
+    }
 }
