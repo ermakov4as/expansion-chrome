@@ -41,7 +41,9 @@ function searchOnClick(info, tab) {
     var itemindex = 0;
     for (var i = 0; i < numentries; i++) {
         if (info.menuItemId == _all[i][0]) {
-            addFromMenu(info.selectionText);
+            if (confirm('Выделенный текст: "' + info.selectionText + '"\nДобавить в тренажёр?')) {
+                addFromMenu(info.selectionText);
+            };
             itemindex = i;
         };
     };
