@@ -1,6 +1,6 @@
 var logging = false;
 
-const API_URL = "https://extension-chrome-1.firebaseio.com/test.json";
+//const API_URL = "https://extension-chrome-1.firebaseio.com/test.json";
 
 function setItem(key, value) {
     try {
@@ -40,7 +40,7 @@ function log(txt) {
     };
 };
 
-function addFromMenu(text) {
+/*function addFromMenu(text) {
     let xhr = new XMLHttpRequest();
     data = { "selected_text": text };
     xhr.open('PUT', API_URL, true);
@@ -49,15 +49,10 @@ function addFromMenu(text) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState != 4) return;
         if (xhr.status != 200) {
-
-            alert('Ошибка загрузки');
+            chrome.runtime.sendMessage({ type: 'error', text: xhr.status }, function(response) {});
             console.log('Error! ' + xhr.status + ': ' + xhr.statusText);
         } else {
-            //alert('Success');
+            chrome.runtime.sendMessage({ type: 'success', text: text }, function(response) {});
         };
     };
-};
-
-function test() {
-    alert('test');
-}
+};*/

@@ -10,9 +10,7 @@ document.body.addEventListener('keydown', function(e) {
         if (altIndex) {
             var selection = window.getSelection().toString();
             if (selection != "") {
-                if (confirm('Выделенный текст: "' + selection + '"\nДобавить в тренажёр?')) {
-                    addFromHotKey(selection);
-                };
+                addFromHotKey(selection);
             };
         };
     };
@@ -33,11 +31,10 @@ function addFromHotKey(text) {
     xhr.onreadystatechange = function() {
         if (xhr.readyState != 4) return;
         if (xhr.status != 200) {
-            alert('Ошибка загрузки');
+            chrome.runtime.sendMessage({ type: 'error', text: xhr.status }, function(response) {});
             console.log('Error! ' + xhr.status + ': ' + xhr.statusText);
         } else {
-            alert('Success');
-            //createNotification(text);
+            chrome.runtime.sendMessage({ type: 'success', text: text }, function(response) {});
         };
     };
 };

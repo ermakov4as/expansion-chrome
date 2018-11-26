@@ -1,6 +1,8 @@
 var _all;
 var numentries;
 
+const API_URL = "https://extension-chrome-1.firebaseio.com/test.json";
+
 var newBuildNumber = 100;
 setItem("_buildNumber", newBuildNumber);
 
@@ -41,12 +43,27 @@ function searchOnClick(info, tab) {
     var itemindex = 0;
     for (var i = 0; i < numentries; i++) {
         if (info.menuItemId == _all[i][0]) {
-            if (confirm('Выделенный текст: "' + info.selectionText + '"\nДобавить в тренажёр?')) {
-                addFromMenu(info.selectionText);
-            };
+            addFromMenu(info.selectionText);
             itemindex = i;
         };
     };
 };
 
 updatemenu();
+
+function addFromMenu(text) {
+    let xhr = new XMLHttpRequest();
+    data = { "selected_text": text };
+    xhr.open('PUT', API_URL, true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    xhr.send(JSON.stringify(data));
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState != 4) return;
+        if (xhr.status != 200) {
+            chrome.runtime.sendMessage({ type: 'error', text: xhr.status }, function(response) {});
+            console.log('Error! ' + xhr.status + ': ' + xhr.statusText);
+        } else {
+            chrome.runtime.sendMessage({ type: 'success', text: text }, function(response) {});
+        };
+    };
+};
