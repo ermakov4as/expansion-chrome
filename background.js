@@ -12,7 +12,7 @@ function createNotification(data) {
     let id = 'notificationID' + timestamp;
     let opt = { type: "basic", title: title, message: msg, iconUrl: "./images/icon128.png" };
     chrome.notifications.create(id, opt, function() {
-        setTimeout(function() { chrome.notifications.clear(id) }, 5000);
+        setTimeout(function() { chrome.notifications.clear(id) }, 4000);
     });
 };
 
