@@ -1,10 +1,21 @@
 let selectedText = [];
 
+let test = "";
+
+chrome.storage.sync.get(['foo', 'bar'], function(items) {
+    test = items.bar;
+});
+
 const API_URL = "https://extension-chrome-1.firebaseio.com/test.json";
 
 document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.executeScript(null, { "code": "window.getSelection().toString()" }, function(selection) {
         if (selection) {
+
+            chrome.storage.sync.set({ 'lol': 'kek' }, function() {
+                //alert('Settings saved');
+            });
+
             selectedText = selection[0];
             selectedText = selectedText.replace(/^\s*/, ' ').replace(/\s*$/, ' ');
             selectedText = selectedText.slice(1, -1);
@@ -40,6 +51,10 @@ function addToTrainer() {
         } else {
             document.getElementById("success").classList.remove("extension-hidden");
             document.getElementById("btn").classList.add("extension-hidden");
+            chrome.storage.sync.get(['foo', 'bar', 'lol'], function(items) {
+                alert('popup ' + items.lol);
+                alert(test);
+            });
         };
     };
 };

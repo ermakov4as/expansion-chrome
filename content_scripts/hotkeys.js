@@ -34,7 +34,10 @@ function addFromHotKey(text) {
             chrome.runtime.sendMessage({ type: 'error', text: xhr.status }, function(response) {});
             console.log('Error! ' + xhr.status + ': ' + xhr.statusText);
         } else {
-            chrome.runtime.sendMessage({ type: 'success', text: text }, function(response) {});
+            //chrome.runtime.sendMessage({ type: 'success', text: text }, function(response) {});
+            chrome.storage.sync.get(['foo', 'bar'], function(items) {
+                alert('hotkeys ' + items.foo);
+            });
         };
     };
 };

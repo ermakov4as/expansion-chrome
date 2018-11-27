@@ -31,7 +31,8 @@
         "webRequest",
         "webRequestBlocking",
         "contextMenus",
-        "notifications"
+        "notifications",
+        "storage"
     ],
 
     "options_page": "options.html",

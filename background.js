@@ -17,3 +17,7 @@ function createNotification(data) {
 };
 
 chrome.runtime.onMessage.addListener(createNotification);
+
+chrome.storage.sync.set({ 'foo': 'hello', 'bar': 'hi' }, function() {
+    //alert('Settings saved');
+});

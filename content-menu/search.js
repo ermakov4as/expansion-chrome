@@ -63,7 +63,10 @@ function addFromMenu(text) {
             createNotificationSearch({ type: 'error', text: xhr.status });
             console.log('Error! ' + xhr.status + ': ' + xhr.statusText);
         } else {
-            createNotificationSearch({ type: 'success', text: text });
+            chrome.storage.sync.get(['foo', 'bar'], function(items) {
+                alert('rmb ' + items.foo);
+            });
+            //createNotificationSearch({ type: 'success', text: text });
         };
     };
 };
