@@ -10,7 +10,9 @@
 <body class="extension-place">
     <div class="extension-centre extension-title">SWIFT <span class="red">ENGLISH</span></div>
     <hr>
-    <div id="authorized">
+
+    <div class="extension-hidden" id="authorized">
+
         <div id="ifNoText">
             <p class="extension-text">Для добавления фрагмента текста в Тренажёр:</p>
             <ul class="extension-text-simple">
@@ -23,6 +25,7 @@
                 </ul>
             </ul>
         </div>
+
         <div class="extension-hidden" id="text">
             <span class="extension-text">Выделенный текст: "</span>
             <span id="output"></span>
@@ -39,9 +42,18 @@
         </div>
         <hr>
         <div class="extension-centre">
-            <div class="extension-logout" id="logout">Выйти из аккаунта</div>
+            <div class="extension-logout" type="button" id="logout">Выйти из аккаунта</div>
         </div>
     </div>
+
+    <div class="extension-centre" id="non-authorized">
+        <div class="extension-text" id="first-logit-try">Введите логин и пароль:</div>
+        <div class="extension-hidden extension-text" id="not-first-logit-try">
+            <p class="red">Введены неверные данные</p>
+            <p>Пожалуйста, повторите попытку</p>
+        </div>
+    </div>
+
 </body>
 
 </html>

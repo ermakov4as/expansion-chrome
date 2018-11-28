@@ -1,3 +1,5 @@
+//let authorized = true;
+
 function createNotification(data) {
     let title = "";
     let msg = "";
@@ -7,6 +9,9 @@ function createNotification(data) {
     } else if (data.type === 'error') {
         title = "Ошибка!";
         msg = `Ошибка ${data.text} при добавлении выделенного текста в Тренажёр`;
+    } else if (data.type === 'access-denied') {
+        title = 'Ошибка доступа!';
+        msg = 'Авторизируйтесь для работы с расширением';
     };
     let timestamp = new Date().getTime();
     let id = 'notificationID' + timestamp;
@@ -18,6 +23,10 @@ function createNotification(data) {
 
 chrome.runtime.onMessage.addListener(createNotification);
 
-chrome.storage.sync.set({ 'foo': 'hello', 'bar': 'hi' }, function() {
-    //alert('Settings saved');
-});
+chrome.storage.sync.set({
+    'foo': 'hello',
+    'bar': 'hi',
+    'API_URL': 'https://extension-chrome-1.firebaseio.com/test.json',
+    //'access': authorized
+    'access': true
+}, function() {});

@@ -1,10 +1,7 @@
 var _all;
 var numentries;
 
-const API_URL = "https://extension-chrome-1.firebaseio.com/test.json";
-
-var newBuildNumber = 100;
-setItem("_buildNumber", newBuildNumber);
+updatemenu();
 
 function updatemenu() {
     chrome.contextMenus.removeAll();
@@ -49,26 +46,27 @@ function searchOnClick(info, tab) {
     };
 };
 
-updatemenu();
-
 function addFromMenu(text) {
-    let xhr = new XMLHttpRequest();
-    data = { "selected_text": text };
-    xhr.open('PUT', API_URL, true);
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-    xhr.send(JSON.stringify(data));
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState != 4) return;
-        if (xhr.status != 200) {
-            createNotificationSearch({ type: 'error', text: xhr.status });
-            console.log('Error! ' + xhr.status + ': ' + xhr.statusText);
+    chrome.storage.sync.get(['access', 'API_URL'], function(items) {
+        if (items.access) {
+            let xhr = new XMLHttpRequest();
+            data = { "selected_text": text };
+            xhr.open('PUT', items.API_URL, true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+            xhr.send(JSON.stringify(data));
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState != 4) return;
+                if (xhr.status != 200) {
+                    createNotificationSearch({ type: 'error', text: xhr.status });
+                    console.log('Error! ' + xhr.status + ': ' + xhr.statusText);
+                } else {
+                    createNotificationSearch({ type: 'success', text: text });
+                };
+            };
         } else {
-            chrome.storage.sync.get(['foo', 'bar'], function(items) {
-                alert('rmb ' + items.foo);
-            });
-            //createNotificationSearch({ type: 'success', text: text });
+            createNotificationSearch({ type: 'access-denied', text: "" });
         };
-    };
+    });
 };
 
 function createNotificationSearch(data) {
@@ -80,6 +78,9 @@ function createNotificationSearch(data) {
     } else if (data.type === 'error') {
         title = "Ошибка!";
         msg = `Ошибка ${data.text} при добавлении выделенного текста в Тренажёр`;
+    } else if (data.type === 'access-denied') {
+        title = 'Ошибка доступа!';
+        msg = 'Авторизируйтесь для работы с расширением';
     };
     let timestamp = new Date().getTime();
     let id = 'notificationID' + timestamp;

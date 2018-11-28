@@ -63,14 +63,14 @@
 
 .extension-label-success {
     font-weight: bold;
-    background-color: azure;
+    background-color: aqua;
     color: green;
 }
 
 .extension-label-error {
     font-weight: bold;
-    background-color: aqua;
-    color: red;
+    background-color: red;
+    color: white;
 }
 
 .extension-logout {
