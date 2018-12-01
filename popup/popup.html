@@ -47,11 +47,18 @@
     </div>
 
     <div class="extension-centre" id="non-authorized">
-        <div class="extension-text" id="first-logit-try">Введите логин и пароль:</div>
+        <div class="extension-subtitle" id="first-logit-try">Введите логин и пароль:</div>
         <div class="extension-hidden extension-text" id="not-first-logit-try">
             <p class="red">Введены неверные данные</p>
             <p>Пожалуйста, повторите попытку</p>
         </div>
+        <form name="loginForm" class="extension-centre extension-text-simple">
+            <p>Логин:</p>
+            <input type=email size="30" name="loginInput" class="extension-input" id="loginInput">
+            <p>Пароль:</p>
+            <input type="password" size="30" name="passwordInput" class="extension-input" id="passwordInput">
+            <button class="extension-button" type="button" id="login">Войти</button>
+        </form>
     </div>
 
 </body>

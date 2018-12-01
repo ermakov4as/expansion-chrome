@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() { checkAccess() }, 4);
     document.getElementById('add').onclick = addToTrainer;
     document.getElementById('logout').onclick = logout;
+    document.getElementById('login').onclick = login;
 });
 
 function addToTrainer() {
@@ -78,11 +79,17 @@ function logout() {
 };
 
 function login() {
+    let loginValue = document.getElementById('loginInput').value;
+    let passwordValue = document.getElementById('passwordInput').value;
+    document.getElementById('loginInput').value = "";
+    document.getElementById('passwordInput').value = "";
     // ADD LOGIN REQUEST
+
     // IF SUCCESS
     permission = true;
     chrome.storage.sync.set({ 'access': true }, function() {});
     checkAccess();
+
     // IF ERROR
     // document.getElementById("first-logit-try").classList.add("extension-hidden");
     // document.getElementById("not-first-logit-try").classList.remove("extension-hidden");
